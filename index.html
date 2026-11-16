@@ -38,17 +38,22 @@
     }
     .meta-btn {
       background: linear-gradient(180deg, #990000, #590000);
-      border: 1.5px solid #ff4d4d;
-      color: #fff;
-      padding: 8px 18px;
+      border: 1.5px solid #ffd700;
+      color: #ffd700;
+      padding: 7px 16px;
       border-radius: 10px;
-      font-weight: 800;
+      font-weight: 900;
+      font-size: 0.85rem;
       letter-spacing: 1px;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(255, 51, 51, 0.45);
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.35);
       transition: 0.15s;
     }
-    .meta-btn:hover { background: #cc0000; transform: scale(1.04); }
+    .meta-btn:hover {
+      background: #cc0000;
+      color: #ffffff;
+      transform: scale(1.04);
+    }
     main {
       flex: 1;
       display: flex;
@@ -161,10 +166,11 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.25);
       padding-bottom: 14px;
       margin-bottom: 16px;
+      flex-wrap: wrap;
     }
     .view-title {
       margin: 0;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 900;
       letter-spacing: 1.5px;
       text-transform: uppercase;
@@ -174,7 +180,7 @@
       background: rgba(255, 255, 255, 0.12);
       border: 1.5px solid #ff6666;
       color: #fff;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: bold;
       padding: 6px 14px;
       border-radius: 10px;
@@ -301,7 +307,6 @@
 
   <header>
     <div class="logo" onclick="goHome()">VIPER</div>
-    <button class="meta-btn" onclick="openMetaView()">META</button>
   </header>
 
   <main>
@@ -325,33 +330,34 @@
         <div class="view-header">
           <button class="back-btn" onclick="goHome()">← Back</button>
           <h2 class="view-title">Multiplayer Loadouts</h2>
+          <button class="meta-btn" onclick="openMetaView('MP')">MP META</button>
         </div>
         <div class="category-grid">
-          <div class="cat-card" onclick="openWeaponList('Assault Rifle')">
+          <div class="cat-card" onclick="openWeaponList('Assault Rifle', 'MP')">
             <div class="cat-title">ASSAULT<br>RIFLE</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M3,11H21V13H3V11M2,14H22V16H2V14M5,8H19V10H5V8Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openWeaponList('Sub Machine Gun')">
+          <div class="cat-card" onclick="openWeaponList('Sub Machine Gun', 'MP')">
             <div class="cat-title">SUB<br>MACHINE GUN</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M2,11H22V13H2V11M4,14H20V16H4V14Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openWeaponList('Light Machine Gun')">
+          <div class="cat-card" onclick="openWeaponList('Light Machine Gun', 'MP')">
             <div class="cat-title">LIGHT<br>MACHINE GUN</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M1,10H23V13H1V10M3,14H21V16H3V14Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openWeaponList('Shotgun')">
+          <div class="cat-card" onclick="openWeaponList('Shotgun', 'MP')">
             <div class="cat-title">SHOTGUN</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M2,11H22V14H2V11M5,15H19V17H5V15Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openWeaponList('Marksman Rifle')">
+          <div class="cat-card" onclick="openWeaponList('Marksman Rifle', 'MP')">
             <div class="cat-title">MARKSMAN<br>RIFLE</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M2,11H22V13H2V11M3,14H21V16H3V14Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openWeaponList('Sniper Rifle')">
+          <div class="cat-card" onclick="openWeaponList('Sniper Rifle', 'MP')">
             <div class="cat-title">SNIPER<br>RIFLE</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M1,10H23V13H1V10M2,14H22V16H2V14Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openWeaponList('Pistol')">
+          <div class="cat-card" onclick="openWeaponList('Pistol', 'MP')">
             <div class="cat-title">PISTOL</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M6,11H18V14H6V11M8,15H16V17H8V15Z"/></svg>
           </div>
@@ -359,12 +365,13 @@
       </div>
 
       <!-- Battle Royale View -->
-      <div id="brView" class="view-section" style="text-align: center; padding: 30px 10px;">
+      <div id="brView" class="view-section">
         <div class="view-header">
           <button class="back-btn" onclick="goHome()">← Back</button>
           <h2 class="view-title">Battle Royale</h2>
+          <button class="meta-btn" onclick="openMetaView('BR')">BR META</button>
         </div>
-        <p style="color: #ff9999; font-size: 1.1rem; margin-top: 25px; font-weight: bold;">
+        <p style="color: #ff9999; font-size: 1.1rem; margin: 35px 0; text-align: center; font-weight: bold;">
           Battle Royale loadouts and gun attachments will be added here soon! Stay tuned.
         </p>
       </div>
@@ -372,7 +379,7 @@
       <!-- Gun Selection & Search View -->
       <div id="weaponView" class="view-section">
         <div class="view-header">
-          <button class="back-btn" onclick="openMultiplayer()">← Back</button>
+          <button class="back-btn" onclick="backToMode()">← Back</button>
           <h2 class="view-title" id="categoryHeading">ASSAULT RIFLE</h2>
         </div>
         <input
@@ -400,58 +407,62 @@
 
   <script>
     const GUN_DATABASE = [
-      // --- ASSAULT RIFLES ---
-      { name: "BP50", category: "Assault Rifle", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "BP50-1A2B4C8D9E" },
-      { name: "HVK-30", category: "Assault Rifle", rank: "TOP 2 META", isMeta: true, metaRank: 2, code: "HVK30-1C2A4D8B9A" },
-      { name: "DR-H", category: "Assault Rifle", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "DRH-1A2B4C8A9A" },
-      { name: "XM4", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "XM4-1A2G4F8F9E" },
-      { name: "Lachmann-556", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Lachmann-556-1G2A4E8C9A" },
-      { name: "ISO Hemlock", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "ISO Hemlock-1E2E4E7H8A" },
-      { name: "Grav", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Grav-1A2D7C8A9F" },
-      { name: "M13", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "M13-1B2B4A8A9A" },
-      { name: "BAL-27", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "BAL-27-1C2A4A8A9A" },
-      { name: "LAG-53", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "LAG 53-1A2C4B8A9A" },
-      { name: "KN-44", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "KN-44-2B4D5C8B9C" },
-      { name: "Grau 5.56", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Grau 5.56-2B4C5F8A9A" },
-      { name: "Man-O-War", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Man-O-War-1C2C3A8C9C" },
-      { name: "CR-56 AMAX", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "CR-56 AMAX-1A2B4A8A9A" },
-      { name: "AS VAL", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "AS VAL-2B3B4D8C9A" },
-      { name: "AK-47", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "AK-47-1A2C4A8A9A" },
+      // --- MULTIPLAYER ASSAULT RIFLES ---
+      { name: "BP50", mode: "MP", category: "Assault Rifle", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "BP50-1A2B4C8D9E" },
+      { name: "HVK-30", mode: "MP", category: "Assault Rifle", rank: "TOP 2 META", isMeta: true, metaRank: 2, code: "HVK30-1C2A4D8B9A" },
+      { name: "DR-H", mode: "MP", category: "Assault Rifle", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "DRH-1A2B4C8A9A" },
+      { name: "XM4", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "XM4-1A2G4F8F9E" },
+      { name: "Lachmann-556", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Lachmann-556-1G2A4E8C9A" },
+      { name: "ISO Hemlock", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "ISO Hemlock-1E2E4E7H8A" },
+      { name: "Grav", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Grav-1A2D7C8A9F" },
+      { name: "M13", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "M13-1B2B4A8A9A" },
+      { name: "BAL-27", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "BAL-27-1C2A4A8A9A" },
+      { name: "LAG-53", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "LAG 53-1A2C4B8A9A" },
+      { name: "KN-44", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "KN-44-2B4D5C8B9C" },
+      { name: "Grau 5.56", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Grau 5.56-2B4C5F8A9A" },
+      { name: "Man-O-War", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Man-O-War-1C2C3A8C9C" },
+      { name: "CR-56 AMAX", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "CR-56 AMAX-1A2B4A8A9A" },
+      { name: "AS VAL", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "AS VAL-2B3B4D8C9A" },
+      { name: "AK-47", mode: "MP", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "AK-47-1A2C4A8A9A" },
 
-      // --- SUB MACHINE GUNS ---
-      { name: "STATIC-HV", category: "Sub Machine Gun", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "STATICHV-1C2A4B8A9A" },
-      { name: "Switchblade X9", category: "Sub Machine Gun", rank: "TOP 2 META", isMeta: true, metaRank: 2, code: "SX9-1C2B4A8A9A" },
-      { name: "QQ9", category: "Sub Machine Gun", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "QQ9-2C4C6C8B9A" },
+      // --- MULTIPLAYER SUB MACHINE GUNS ---
+      { name: "STATIC-HV", mode: "MP", category: "Sub Machine Gun", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "STATICHV-1C2A4B8A9A" },
+      { name: "Switchblade X9", mode: "MP", category: "Sub Machine Gun", rank: "TOP 2 META", isMeta: true, metaRank: 2, code: "SX9-1C2B4A8A9A" },
+      { name: "QQ9", mode: "MP", category: "Sub Machine Gun", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "QQ9-2C4C6C8B9A" },
 
-      // --- LIGHT MACHINE GUNS ---
-      { name: "MG42", category: "Light Machine Gun", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "MG42-1B2C4A8D9A" },
+      // --- MULTIPLAYER LIGHT MACHINE GUNS ---
+      { name: "MG42", mode: "MP", category: "Light Machine Gun", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "MG42-1B2C4A8D9A" },
 
-      // --- SHOTGUNS ---
-      { name: "KRM-262", category: "Shotgun", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "KRM-1D2B4C6A9A" },
+      // --- MULTIPLAYER SHOTGUNS ---
+      { name: "KRM-262", mode: "MP", category: "Shotgun", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "KRM-1D2B4C6A9A" },
 
-      // --- MARKSMAN RIFLES ---
-      { name: "SKS", category: "Marksman Rifle", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "SKS-1A2A4B7A9A" },
-      { name: "Type 63", category: "Marksman Rifle", rank: "TOP 2 META", isMeta: true, metaRank: 2, code: "Type 63-1B2D7E8F9F" },
-      { name: "Kilo Bolt-Action", category: "Marksman Rifle", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "Kilo Bolt-Action-1D2A4A8C9C" },
-      { name: "SP-R 208", category: "Marksman Rifle", rank: "LOADOUT", isMeta: false, code: "SP-R 208-2A4A5A8B9A" },
-      { name: "SO-14", category: "Marksman Rifle", rank: "LOADOUT", isMeta: false, code: "SO-14-1C2C4E5H8B" },
+      // --- MULTIPLAYER MARKSMAN RIFLES ---
+      { name: "SKS", mode: "MP", category: "Marksman Rifle", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "SKS-1A2A4B7A9A" },
+      { name: "Type 63", mode: "MP", category: "Marksman Rifle", rank: "TOP 2 META", isMeta: true, metaRank: 2, code: "Type 63-1B2D7E8F9F" },
+      { name: "Kilo Bolt-Action", mode: "MP", category: "Marksman Rifle", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "Kilo Bolt-Action-1D2A4A8C9C" },
+      { name: "SP-R 208", mode: "MP", category: "Marksman Rifle", rank: "LOADOUT", isMeta: false, code: "SP-R 208-2A4A5A8B9A" },
+      { name: "SO-14", mode: "MP", category: "Marksman Rifle", rank: "LOADOUT", isMeta: false, code: "SO-14-1C2C4E5H8B" },
 
-      // --- SNIPER RIFLES ---
-      { name: "LW3-Tundra", category: "Sniper Rifle", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "TUNDRA-1A2B4C8A9B" },
-      { name: "Locus", category: "Sniper Rifle", rank: "TOP 2 META", isMeta: true, metaRank: 2, code: "Locus-2B4B5A8C9C" },
-      { name: "DL Q33", category: "Sniper Rifle", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "DL Q33-1B2A4A5A6A" },
-      { name: "Koshka", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "Koshka-2A4A5A8A9C" },
-      { name: "ZRG", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "ZRG 20mm-1D2C3B4C8B" },
-      { name: "RYTEC", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "Rytec AMR-1D2A4C8B9C" },
-      { name: "HDR", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "HDR-1B2A4B5A8A" },
-      { name: "XPR", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "XPR-50-1C2C4C6A8C" },
-      { name: "3-Line", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "3-Line Rifle-1D2B4B5A8C" },
-      { name: "Outlaw", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "Outlaw-1C2A4A5I8A" },
-      { name: "Artic 50", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "Arctic .50 -2A4B5A8C9C" },
-      { name: "SVD", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "SVD-1C2B4B5A8B" },
+      // --- MULTIPLAYER SNIPER RIFLES ---
+      { name: "LW3-Tundra", mode: "MP", category: "Sniper Rifle", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "TUNDRA-1A2B4C8A9B" },
+      { name: "Locus", mode: "MP", category: "Sniper Rifle", rank: "TOP 2 META", isMeta: true, metaRank: 2, code: "Locus-2B4B5A8C9C" },
+      { name: "DL Q33", mode: "MP", category: "Sniper Rifle", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "DL Q33-1B2A4A5A6A" },
+      { name: "Koshka", mode: "MP", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "Koshka-2A4A5A8A9C" },
+      { name: "ZRG", mode: "MP", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "ZRG 20mm-1D2C3B4C8B" },
+      { name: "RYTEC", mode: "MP", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "Rytec AMR-1D2A4C8B9C" },
+      { name: "HDR", mode: "MP", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "HDR-1B2A4B5A8A" },
+      { name: "XPR", mode: "MP", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "XPR-50-1C2C4C6A8C" },
+      { name: "3-Line", mode: "MP", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "3-Line Rifle-1D2B4B5A8C" },
+      { name: "Outlaw", mode: "MP", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "Outlaw-1C2A4A5I8A" },
+      { name: "Artic 50", mode: "MP", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "Arctic .50 -2A4B5A8C9C" },
+      { name: "SVD", mode: "MP", category: "Sniper Rifle", rank: "LOADOUT", isMeta: false, code: "SVD-1C2B4B5A8B" },
 
-      // --- PISTOLS ---
-      { name: "Dobvra", category: "Pistol", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "DOBVRA-1A2B5A8B9A" }
+      // --- MULTIPLAYER PISTOLS ---
+      { name: "Dobvra", mode: "MP", category: "Pistol", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "DOBVRA-1A2B5A8B9A" }
+
+      // --- BATTLE ROYALE WEAPONS (Add mode: "BR" guns here later!) ---
+      // Example:
+      // { name: "AK-47", mode: "BR", category: "Assault Rifle", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "AK47-BRCODE" }
     ];
 
     const CATEGORY_ORDER = [
@@ -465,6 +476,7 @@
     ];
 
     let activeCategory = "Assault Rifle";
+    let activeMode = "MP";
 
     function goHome() {
       document.getElementById("mpCategoriesView").style.display = "none";
@@ -474,6 +486,7 @@
     }
 
     function openMultiplayer() {
+      activeMode = "MP";
       document.getElementById("homeView").style.display = "none";
       document.getElementById("brView").style.display = "none";
       document.getElementById("weaponView").style.display = "none";
@@ -481,15 +494,26 @@
     }
 
     function openBattleRoyale() {
+      activeMode = "BR";
       document.getElementById("homeView").style.display = "none";
       document.getElementById("mpCategoriesView").style.display = "none";
       document.getElementById("weaponView").style.display = "none";
       document.getElementById("brView").style.display = "block";
     }
 
-    function openWeaponList(category) {
+    function backToMode() {
+      if (activeMode === "BR") {
+        openBattleRoyale();
+      } else {
+        openMultiplayer();
+      }
+    }
+
+    function openWeaponList(category, mode) {
       activeCategory = category;
+      activeMode = mode;
       document.getElementById("mpCategoriesView").style.display = "none";
+      document.getElementById("brView").style.display = "none";
       document.getElementById("weaponView").style.display = "block";
       document.getElementById("categoryHeading").innerText = category.toUpperCase();
       const searchInput = document.getElementById("gunSearchInput");
@@ -498,13 +522,15 @@
       searchInput.focus();
     }
 
-    function openMetaView() {
+    function openMetaView(mode) {
+      activeMode = mode;
+      activeCategory = "META";
       document.getElementById("homeView").style.display = "none";
       document.getElementById("mpCategoriesView").style.display = "none";
       document.getElementById("brView").style.display = "none";
       document.getElementById("weaponView").style.display = "block";
-      activeCategory = "META";
-      document.getElementById("categoryHeading").innerText = "TOP META BY CATEGORY";
+      document.getElementById("categoryHeading").innerText =
+        mode === "BR" ? "BR TOP META BY CATEGORY" : "MP TOP META BY CATEGORY";
       const searchInput = document.getElementById("gunSearchInput");
       searchInput.value = "";
       renderGuns("");
@@ -536,7 +562,12 @@
 
         CATEGORY_ORDER.forEach(cat => {
           const catMetaGuns = GUN_DATABASE
-            .filter(gun => gun.isMeta && gun.category === cat && gun.name.toLowerCase().includes(searchQuery))
+            .filter(gun =>
+              gun.mode === activeMode &&
+              gun.isMeta &&
+              gun.category === cat &&
+              gun.name.toLowerCase().includes(searchQuery)
+            )
             .sort((a, b) => (a.metaRank || 99) - (b.metaRank || 99));
 
           if (catMetaGuns.length > 0) {
@@ -553,13 +584,20 @@
         });
 
         if (totalFound === 0) {
-          grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color:#ff9999;">No meta weapon found matching "${searchQuery}".</p>`;
+          const emptyMsg = activeMode === "BR" && searchQuery === ""
+            ? "Battle Royale Meta loadouts coming soon!"
+            : `No ${activeMode} meta weapon found matching "${searchQuery}".`;
+          grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color:#ff9999; font-weight:bold;">${emptyMsg}</p>`;
         }
         return;
       }
 
       const filtered = GUN_DATABASE.filter(gun => {
-        return gun.category === activeCategory && gun.name.toLowerCase().includes(searchQuery);
+        return (
+          gun.mode === activeMode &&
+          gun.category === activeCategory &&
+          gun.name.toLowerCase().includes(searchQuery)
+        );
       });
 
       if (filtered.length === 0) {
