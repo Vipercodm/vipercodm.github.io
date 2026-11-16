@@ -5,179 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ViperCODM | Meta Loadouts</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle at top, #3b0a0a, #0d0d0d 75%);
+      background: radial-gradient(circle at 25% 30%, #4a0c0c 0%, #1a0505 45%, #090909 100%);
       color: #ffffff;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
+
+    /* Top Header */
     header {
-      background: rgba(20, 0, 0, 0.85);
-      border-bottom: 2px solid #ff2a2a;
-      padding: 15px 20px;
+      background: linear-gradient(180deg, rgba(60, 5, 5, 0.92), rgba(25, 3, 3, 0.85));
+      border-bottom: 2px solid #ff3333;
+      box-shadow: 0 4px 20px rgba(255, 0, 0, 0.35);
+      padding: 14px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
     .logo {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 900;
-      letter-spacing: 2px;
-      color: #fff;
-      text-shadow: 0 0 10px #ff2a2a;
-    }
-    .badge {
-      background: #b30000;
-      border: 1px solid #ff4d4d;
-      padding: 6px 14px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
-    .container {
-      max-width: 600px;
-      margin: 25px auto;
-      padding: 20px;
-      background: rgba(180, 20, 20, 0.18);
-      border: 2px solid #ff3333;
-      border-radius: 16px;
-      box-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
-    }
-    h2 {
-      margin-top: 0;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding-bottom: 10px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    .card {
-      background: #141414;
-      border: 1.5px solid #ff4d4d;
-      border-radius: 10px;
-      padding: 12px 8px;
-      text-align: center;
+      letter-spacing: 3px;
+      color: #ffffff;
+      text-shadow: 0 0 12px #ff2a2a;
       cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
     }
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 12px #ff2a2a;
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
     }
-    .rank {
-      display: inline-block;
-      background: #ffffff;
-      color: #000000;
+    .meta-btn {
+      background: linear-gradient(180deg, #990000, #590000);
+      border: 1.5px solid #ff4d4d;
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 10px;
       font-weight: 800;
-      font-size: 0.7rem;
-      padding: 2px 10px;
-      border-radius: 12px;
-      margin-bottom: 8px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(255, 51, 51, 0.45);
+      transition: 0.15s;
     }
-    .rank.top1 { background: #ffd700; }
-    .gun-name {
-      font-size: 0.85rem;
-      font-weight: bold;
-      margin-top: 6px;
+    .meta-btn:hover {
+      background: #cc0000;
+      transform: scale(1.04);
     }
-    /* Modal Popup */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
+
+    /* Main Center Area */
+    main {
+      flex: 1;
+      display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 25px 15px;
     }
-    .modal-box {
-      background: #1a0808;
-      border: 2px solid #ff3333;
-      border-radius: 14px;
-      padding: 20px;
-      max-width: 360px;
+
+    /* Red Glass Panel (Matches Chizkodem Hub) */
+    .hub-panel {
+      background: rgba(150, 15, 15, 0.22);
+      backdrop-filter: blur(8px);
+      border: 2px solid #ff3b3b;
+      border-radius: 18px;
+      box-shadow: 0 0 30px rgba(255, 30, 30, 0.4), inset 0 0 20px rgba(255, 40, 40, 0.2);
+      padding: 28px;
       width: 100%;
+      max-width: 780px;
     }
-    .close-btn {
-      float: right;
-      background: #ff2a2a;
-      border: none;
-      color: #fff;
-      font-weight: bold;
-      padding: 4px 10px;
-      border-radius: 6px;
-      cursor: pointer;
+
+    /* Category Grid on Home */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
-    ul { padding-left: 18px; line-height: 1.6; font-size: 0.9rem; }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="logo">VIPER</div>
-    <div class="badge">META</div>
-  </header>
-
-  <div class="container">
-    <h2>Top Overpowered Guns</h2>
-    <div class="grid">
-      <div class="card" onclick="openBuild('STATIC-HV', ['Monolithic Suppressor', 'OSW Light Barrel', 'YKM Combat Stock', '50 Round Mag', 'Granulated Grip Tape'])">
-        <div class="rank top1">TOP 1</div>
-        <div class="gun-name">STATIC-HV</div>
-      </div>
-      <div class="card" onclick="openBuild('BP50', ['Maxim Silencer', 'Leroy 438mm Barrel', 'Removed Stock', '60 Round Drums', 'Stippled Grip Tape'])">
-        <div class="rank">TOP 2</div>
-        <div class="gun-name">BP50</div>
-      </div>
-      <div class="card" onclick="openBuild('SWITCHBLADE X9', ['Monolithic Suppressor', 'MIP Extended Light Barrel', 'YKM Light Stock', 'Extended Mag A', 'Granulated Grip Tape'])">
-        <div class="rank">TOP 3</div>
-        <div class="gun-name">SWITCHBLADE X9</div>
-      </div>
-      <div class="card" onclick="openBuild('HVK-30', ['Monolithic Suppressor', 'MIP Light Barrel', 'YKM Combat Stock', 'Large Caliber Ammo', 'Granulated Grip Tape'])">
-        <div class="rank">TOP 4</div>
-        <div class="gun-name">HVK-30</div>
-      </div>
-      <div class="card" onclick="openBuild('QQ9', ['Monolithic Integral Suppressor', 'No Stock', 'OWC Laser - Tactical', '45 Round Extended Mag', 'Granulated Grip Tape'])">
-        <div class="rank">TOP 5</div>
-        <div class="gun-name">QQ9</div>
-      </div>
-      <div class="card" onclick="openBuild('DR-H', ['Tactical Suppressor', 'OWC Ranger Barrel', 'No Stock', '25 Round OTM Mag', 'Granulated Grip Tape'])">
-        <div class="rank">TOP 6</div>
-        <div class="gun-name">DR-H</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="buildModal">
-    <div class="modal-box">
-      <button class="close-btn" onclick="closeBuild()">X</button>
-      <h3 id="modalTitle" style="margin-top:0; color:#ff4d4d;"></h3>
-      <ul id="modalList"></ul>
-    </div>
-  </div>
-
-  <script>
-    function openBuild(gun, attachments) {
-      document.getElementById('modalTitle').innerText = gun + ' — Gunsmith';
-      const list = document.getElementById('modalList');
-      list.innerHTML = '';
-      attachments.forEach(item => {
-        const li = document.createElement('li');
-        li.innerText = item;
-        list.appendChild(li);
-      });
-      document.getElementById('buildModal').style.display = 'flex';
+    @media (max-width: 680px) {
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    function closeBuild() {
-      document.getElementById('buildModal').style.display = 'none';
-    }
-  </script>
-
-</body>
-</html>
+    .cat-card {
+      background: rgba(20, 5, 5, 0.65);
+      border: 1.5px solid rgba(255, 90, 90, 0
