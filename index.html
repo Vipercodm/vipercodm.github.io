@@ -66,6 +66,51 @@
       width: 100%;
       max-width: 780px;
     }
+
+    /* Main Mode Selection Grid (Multiplayer & Battle Royale) */
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 600px) {
+      .mode-grid { grid-template-columns: 1fr; }
+    }
+    .mode-card {
+      background: rgba(20, 5, 5, 0.75);
+      border: 2px solid rgba(255, 90, 90, 0.7);
+      border-radius: 16px;
+      padding: 35px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .mode-card:hover {
+      background: rgba(255, 40, 40, 0.3);
+      border-color: #ffffff;
+      transform: translateY(-4px);
+      box-shadow: 0 0 22px rgba(255, 50, 50, 0.8);
+    }
+    .mode-title {
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+      margin-bottom: 8px;
+    }
+    .mode-sub {
+      font-size: 0.8rem;
+      color: #ff9999;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Category Grid inside Multiplayer */
     .category-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -108,7 +153,9 @@
       opacity: 0.9;
       filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
     }
-    .weapon-view { display: none; }
+
+    /* Dynamic Views */
+    .view-section { display: none; }
     .view-header {
       display: flex;
       justify-content: space-between;
@@ -126,18 +173,18 @@
       text-transform: uppercase;
       text-shadow: 0 0 10px #ff2a2a;
     }
-    .close-view-btn {
+    .back-btn, .close-view-btn {
       background: rgba(255, 255, 255, 0.12);
       border: 1.5px solid #ff6666;
       color: #fff;
       font-size: 1.1rem;
       font-weight: bold;
-      width: 38px;
-      height: 38px;
+      padding: 6px 14px;
       border-radius: 10px;
       cursor: pointer;
     }
-    .close-view-btn:hover { background: #ff2a2a; }
+    .back-btn:hover, .close-view-btn:hover { background: #ff2a2a; }
+
     .search-box {
       width: 100%;
       padding: 12px 16px;
@@ -189,7 +236,7 @@
     .gun-title { font-size: 0.92rem; font-weight: 800; }
     .gun-sub { font-size: 0.72rem; color: #ff9999; margin-top: 4px; }
     
-    /* Toast Notification for Copy */
+    /* Toast Notification */
     #toast {
       visibility: hidden;
       min-width: 220px;
@@ -242,48 +289,79 @@
 
   <header>
     <div class="logo" onclick="goHome()">VIPER</div>
-    <button class="meta-btn" onclick="openCategory('META')">META</button>
+    <button class="meta-btn" onclick="openMetaView()">META</button>
   </header>
 
   <main>
     <div class="hub-panel">
+      <!-- 1. Home View: Mode Selection (Multiplayer vs Battle Royale) -->
       <div id="homeView">
+        <div class="mode-grid">
+          <div class="mode-card" onclick="openMultiplayer()">
+            <div class="mode-title">Multiplayer</div>
+            <div class="mode-sub">Browse Weapon Categories & Build Codes</div>
+          </div>
+          <div class="mode-card" onclick="openBattleRoyale()">
+            <div class="mode-title">Battle Royale</div>
+            <div class="mode-sub">Coming Soon (No Attachments Yet)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Multiplayer Categories View -->
+      <div id="mpCategoriesView" class="view-section">
+        <div class="view-header">
+          <button class="back-btn" onclick="goHome()">← Back</button>
+          <h2 class="view-title">Multiplayer Loadouts</h2>
+        </div>
         <div class="category-grid">
-          <div class="cat-card" onclick="openCategory('Assault Rifle')">
+          <div class="cat-card" onclick="openWeaponList('Assault Rifle')">
             <div class="cat-title">ASSAULT<br>RIFLE</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M3,11H21V13H3V11M2,14H22V16H2V14M5,8H19V10H5V8Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openCategory('Sub Machine Gun')">
+          <div class="cat-card" onclick="openWeaponList('Sub Machine Gun')">
             <div class="cat-title">SUB<br>MACHINE GUN</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M2,11H22V13H2V11M4,14H20V16H4V14Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openCategory('Light Machine Gun')">
+          <div class="cat-card" onclick="openWeaponList('Light Machine Gun')">
             <div class="cat-title">LIGHT<br>MACHINE GUN</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M1,10H23V13H1V10M3,14H21V16H3V14Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openCategory('Shotgun')">
+          <div class="cat-card" onclick="openWeaponList('Shotgun')">
             <div class="cat-title">SHOTGUN</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M2,11H22V14H2V11M5,15H19V17H5V15Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openCategory('Marksman Rifle')">
+          <div class="cat-card" onclick="openWeaponList('Marksman Rifle')">
             <div class="cat-title">MARKSMAN<br>RIFLE</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M2,11H22V13H2V11M3,14H21V16H3V14Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openCategory('Sniper Rifle')">
+          <div class="cat-card" onclick="openWeaponList('Sniper Rifle')">
             <div class="cat-title">SNIPER<br>RIFLE</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M1,10H23V13H1V10M2,14H22V16H2V14Z"/></svg>
           </div>
-          <div class="cat-card" onclick="openCategory('Pistol')">
+          <div class="cat-card" onclick="openWeaponList('Pistol')">
             <div class="cat-title">PISTOL</div>
             <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M6,11H18V14H6V11M8,15H16V17H8V15Z"/></svg>
           </div>
         </div>
       </div>
 
-      <div id="weaponView" class="weapon-view">
+      <!-- 3. Battle Royale Placeholder View (No Attachments) -->
+      <div id="brView" class="view-section" style="text-align: center; padding: 30px 10px;">
         <div class="view-header">
+          <button class="back-btn" onclick="goHome()">← Back</button>
+          <h2 class="view-title">Battle Royale</h2>
+        </div>
+        <p style="color: #ff9999; font-size: 1.1rem; margin-top: 25px; font-weight: bold;">
+          Battle Royale loadouts and gun attachments will be added here soon! Stay tuned.
+        </p>
+      </div>
+
+      <!-- 4. Gun Selection & Search View -->
+      <div id="weaponView" class="view-section">
+        <div class="view-header">
+          <button class="back-btn" onclick="openMultiplayer()">← Back</button>
           <h2 class="view-title" id="categoryHeading">ASSAULT RIFLE</h2>
-          <button class="close-view-btn" onclick="goHome()">X</button>
         </div>
         <input
           type="text"
@@ -304,9 +382,9 @@
     <div>VIPERCODM LOADOUTS</div>
     <div class="footer-center">CALL OF DUTY MOBILE</div>
     <div class="social-links">
-      <a href="#">FB</a>
+      <a href="#">Tiktok</a>
       <a href="#">DISCORD</a>
-     <a href="https://www.instagram.com/peerrdddd?rpxt=MXRycmlob3h0dnA2eg==" target="_blank">IG</a>
+      <a href="https://www.instagram.com/peerrdddd?rpxt=MXRycmlob3h0dnA2eg==" target="_blank">IG</a>
     </div>
   </footer>
 
@@ -327,20 +405,48 @@
 
     let activeCategory = "Assault Rifle";
 
-    function openCategory(category) {
-      activeCategory = category;
+    function goHome() {
+      document.getElementById("mpCategoriesView").style.display = "none";
+      document.getElementById("brView").style.display = "none";
+      document.getElementById("weaponView").style.display = "none";
+      document.getElementById("homeView").style.display = "block";
+    }
+
+    function openMultiplayer() {
       document.getElementById("homeView").style.display = "none";
+      document.getElementById("brView").style.display = "none";
+      document.getElementById("weaponView").style.display = "none";
+      document.getElementById("mpCategoriesView").style.display = "block";
+    }
+
+    function openBattleRoyale() {
+      document.getElementById("homeView").style.display = "none";
+      document.getElementById("mpCategoriesView").style.display = "none";
+      document.getElementById("weaponView").style.display = "none";
+      document.getElementById("brView").style.display = "block";
+    }
+
+    function openWeaponList(category) {
+      activeCategory = category;
+      document.getElementById("mpCategoriesView").style.display = "none";
       document.getElementById("weaponView").style.display = "block";
-      document.getElementById("categoryHeading").innerText = category === "META" ? "META WEAPONS" : category.toUpperCase();
+      document.getElementById("categoryHeading").innerText = category.toUpperCase();
       const searchInput = document.getElementById("gunSearchInput");
       searchInput.value = "";
       renderGuns("");
       searchInput.focus();
     }
 
-    function goHome() {
-      document.getElementById("weaponView").style.display = "none";
-      document.getElementById("homeView").style.display = "block";
+    function openMetaView() {
+      document.getElementById("homeView").style.display = "none";
+      document.getElementById("mpCategoriesView").style.display = "none";
+      document.getElementById("brView").style.display = "none";
+      document.getElementById("weaponView").style.display = "block";
+      activeCategory = "META";
+      document.getElementById("categoryHeading").innerText = "META WEAPONS";
+      const searchInput = document.getElementById("gunSearchInput");
+      searchInput.value = "";
+      renderGuns("");
     }
 
     function filterGuns() {
