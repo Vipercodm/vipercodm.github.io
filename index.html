@@ -434,12 +434,11 @@
       { name: "QQ9", mode: "MP", category: "Sub Machine Gun", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "QQ9-2C4C6C8B9A" },
 
       { name: "MG42", mode: "MP", category: "Light Machine Gun", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "MG42-1B2C4A8D9A" },
-      { name: "Chopper", mode: "MP", category: "Light Machine Gun", rank: "TOP 2 META", isMeta: true, code: "Chopper-1B2B5E6C7G" },
-      { name: "PKM", mode: "MP", category: "Light Machine Gun", rank: "TOP 3 META", isMeta: true, code: "PKM-1C2B5A8B9A" },
+      { name: "Chopper", mode: "MP", category: "Light Machine Gun", rank: "TOP 2 META", isMeta: true, metaRank: 2, code: "Chopper-1B2B5E6C7G" },
+      { name: "PKM", mode: "MP", category: "Light Machine Gun", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "PKM-1C2B5A8B9A" },
       { name: "RPD", mode: "MP", category: "Light Machine Gun", rank: "", isMeta: false, code: "RPD-1D2D4D5A9B" },
       { name: "Dingo", mode: "MP", category: "Light Machine Gun", rank: "", isMeta: false, code: "Dingo-2C4D5E7F9C" },
       { name: "Holger 26", mode: "MP", category: "Light Machine Gun", rank: "", isMeta: false, code: "Holger 26-1C2A4B6C9A" },
-     
 
       { name: "KRM-262", mode: "MP", category: "Shotgun", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "KRM-1D2B4C6A9A" },
 
@@ -464,23 +463,20 @@
 
       { name: "Dobvra", mode: "MP", category: "Pistol", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "DOBVRA-1A2B5A8B9A" },
 
-
       // ==========================================
       // --- BATTLE ROYALE (BR) WEAPONS ---
       // ==========================================
-      // Example BR General & Meta Loadout format:
-      { name: "RYTEC", mode: "BR", category: "Sniper Rifle", rank: "", isMeta: true, metaRank: 1, code: "Rytec AMR-1D2C4C8B9B" },
-      { name: "DLQ", mode: "BR", category: "Sniper Rifle", rank: "", isMeta: true, metaRank: 1, code: "DL Q33-1C2C4D5E8C" },
-      { name: "XPR", mode: "BR", category: "Sniper Rifle", rank: "", isMeta: true, metaRank: 1, code: "XPR-50-1C2C4C5E8B" },
-      { name: "ZRG", mode: "BR", category: "Sniper Rifle", rank: "", isMeta: false, metaRank: 1, code: "ZRG 20mm-1D2C4C8B9D" },
-      { name: "HDR", mode: "BR", category: "Sniper Rifle", rank: "", isMeta: false, metaRank: 1, code: "ZRG 20mm-1D2C4C8B9D" },
-      { name: "3-Line", mode: "BR", category: "Sniper Rifle", rank: "", isMeta: false, metaRank: 1, code: "3-Line Rifle-1E2B4E7D8C" },
-    
-      { name: "M4", mode: "BR", category: "Assault Rifle", rank: "", isMeta: false, code: "M4-1C2D3A6C8B" }
-      { name: "ISO", mode: "BR", category: "Assault Rifle", rank: "", isMeta: false, code: "ISO Hemlock-1CE4B6C8A" }
-      { name: "Grav", mode: "BR", category: "Assault Rifle", rank: "", isMeta: false, code: "Grav-1A2C3A7C8C" }
-      { name: "Lachmann", mode: "BR", category: "Assault Rifle", rank: "", isMeta: false, code: "Lachmann-556-1C2A6C7J8B" }
-    
+      { name: "RYTEC", mode: "BR", category: "Sniper Rifle", rank: "TOP 1 META", isMeta: true, metaRank: 1, code: "Rytec AMR-1D2C4C8B9B" },
+      { name: "DLQ", mode: "BR", category: "Sniper Rifle", rank: "TOP 2 META", isMeta: true, metaRank: 2, code: "DL Q33-1C2C4D5E8C" },
+      { name: "XPR", mode: "BR", category: "Sniper Rifle", rank: "TOP 3 META", isMeta: true, metaRank: 3, code: "XPR-50-1C2C4C5E8B" },
+      { name: "ZRG", mode: "BR", category: "Sniper Rifle", rank: "", isMeta: false, code: "ZRG 20mm-1D2C4C8B9D" },
+      { name: "HDR", mode: "BR", category: "Sniper Rifle", rank: "", isMeta: false, code: "HDR-1B2A4B5A8A" },
+      { name: "3-Line", mode: "BR", category: "Sniper Rifle", rank: "", isMeta: false, code: "3-Line Rifle-1E2B4E7D8C" },
+      
+      { name: "M4", mode: "BR", category: "Assault Rifle", rank: "", isMeta: false, code: "M4-1C2D3A6C8B" },
+      { name: "ISO Hemlock", mode: "BR", category: "Assault Rifle", rank: "", isMeta: false, code: "ISO Hemlock-1CE4B6C8A" },
+      { name: "Grav", mode: "BR", category: "Assault Rifle", rank: "", isMeta: false, code: "Grav-1A2C3A7C8C" },
+      { name: "Lachmann-556", mode: "BR", category: "Assault Rifle", rank: "", isMeta: false, code: "Lachmann-556-1C2A6C7J8B" }
     ];
 
     const CATEGORY_ORDER = [
@@ -617,7 +613,6 @@
         return;
       }
 
-      // If activeCategory is ALL (for Battle Royale general view) or specific category
       const filtered = GUN_DATABASE.filter(gun => {
         const matchesMode = gun.mode === activeMode;
         const matchesCat = activeCategory === "ALL" || gun.category === activeCategory;
