@@ -363,7 +363,7 @@
           type="text"
           id="gunSearchInput"
           class="search-box"
-          placeholder="Search gun name (e.g. XM4, M13, AK-47)..."
+          placeholder="Search gun name (e.g. XM4, BP50, AK-47)..."
           onkeyup="filterGuns()"
         />
         <div class="guns-grid" id="gunsGrid"></div>
@@ -384,7 +384,7 @@
 
   <script>
     const GUN_DATABASE = [
-      // ASSAULT RIFLES
+      // YOUR NEW ASSAULT RIFLES (Without Meta tag)
       { name: "XM4", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "XM4-1A2G4F8F9E" },
       { name: "Lachmann-556", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Lachmann-556-1G2A4E8C9A" },
       { name: "ISO Hemlock", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "ISO Hemlock-1E2E4E7H8A" },
@@ -397,7 +397,20 @@
       { name: "Man-O-War", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Man-O-War-1C2C3A8C9C" },
       { name: "CR-56 AMAX", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "CR-56 AMAX-1A2B4A8A9A" },
       { name: "AS VAL", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "AS VAL-2B3B4D8C9A" },
-      { name: "AK-47", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "AK-47-1A2C4A8A9A" }
+      { name: "AK-47", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "AK-47-1A2C4A8A9A" },
+
+      // PREVIOUS WEAPONS & CATEGORIES
+      { name: "BP50", category: "Assault Rifle", rank: "TOP 1 META", isMeta: true, code: "BP50-1A2B4C8D9E" },
+      { name: "HVK-30", category: "Assault Rifle", rank: "TOP 2 META", isMeta: true, code: "HVK30-1C2A4D8B9A" },
+      { name: "DR-H", category: "Assault Rifle", rank: "TOP 3", isMeta: true, code: "DRH-1A2B4C8A9A" },
+      { name: "STATIC-HV", category: "Sub Machine Gun", rank: "TOP 1 META", isMeta: true, code: "STATICHV-1C2A4B8A9A" },
+      { name: "Switchblade X9", category: "Sub Machine Gun", rank: "TOP 2 META", isMeta: true, code: "SX9-1C2B4A8A9A" },
+      { name: "QQ9", category: "Sub Machine Gun", rank: "TOP 3", isMeta: false, code: "QQ9-2C4C6C8B9A" },
+      { name: "MG42", category: "Light Machine Gun", rank: "TOP 1 META", isMeta: true, code: "MG42-1B2C4A8D9A" },
+      { name: "KRM-262", category: "Shotgun", rank: "TOP 1", isMeta: true, code: "KRM-1D2B4C6A9A" },
+      { name: "SKS", category: "Marksman Rifle", rank: "TOP 1 META", isMeta: true, code: "SKS-1A2A4B7A9A" },
+      { name: "LW3-Tundra", category: "Sniper Rifle", rank: "TOP 1 META", isMeta: true, code: "TUNDRA-1A2B4C8A9B" },
+      { name: "Dobvra", category: "Pistol", rank: "TOP 1", isMeta: true, code: "DOBVRA-1A2B5A8B9A" }
     ];
 
     let activeCategory = "Assault Rifle";
