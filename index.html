@@ -78,7 +78,7 @@
       background: rgba(20, 5, 5, 0.65);
       border: 1.5px solid rgba(255, 90, 90, 0.6);
       border-radius: 12px;
-      padding: 22px 12px;
+      padding: 18px 10px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -86,7 +86,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 105px;
+      min-height: 110px;
     }
     .cat-card:hover {
       background: rgba(255, 40, 40, 0.28);
@@ -96,17 +96,17 @@
     }
     .cat-title {
       font-weight: 900;
-      font-size: 0.95rem;
-      letter-spacing: 1px;
+      font-size: 0.88rem;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      line-height: 1.35;
+      line-height: 1.25;
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+      margin-bottom: 8px;
     }
-    .cat-count {
-      font-size: 0.72rem;
-      color: #ff9999;
-      margin-top: 6px;
-      font-weight: 600;
+    .cat-icon {
+      height: 22px;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
     }
     .weapon-view { display: none; }
     .view-header {
@@ -286,35 +286,35 @@
         <div class="category-grid">
           <div class="cat-card" onclick="openCategory('Assault Rifle')">
             <div class="cat-title">ASSAULT<br>RIFLE</div>
-            <div class="cat-count" id="count-Assault Rifle"></div>
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M22,7H19V6AppBarLayout... M2,11H22V13H2Z"/><path d="M3,11H21V13H3V11M2,14H22V16H2V14M5,8H19V10H5V8Z"/></svg>
           </div>
           <div class="cat-card" onclick="openCategory('Sub Machine Gun')">
-            <div class="cat-title">SUB<br>MACHINE<br>GUN</div>
-            <div class="cat-count" id="count-Sub Machine Gun"></div>
+            <div class="cat-title">SUB<br>MACHINE GUN</div>
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M2,11H22V13H2V11M4,14H20V16H4V14Z"/></svg>
           </div>
           <div class="cat-card" onclick="openCategory('Light Machine Gun')">
-            <div class="cat-title">LIGHT<br>MACHINE<br>GUN</div>
-            <div class="cat-count" id="count-Light Machine Gun"></div>
+            <div class="cat-title">LIGHT<br>MACHINE GUN</div>
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M1,10H23V13H1V10M3,14H21V16H3V14Z"/></svg>
           </div>
           <div class="cat-card" onclick="openCategory('Shotgun')">
             <div class="cat-title">SHOTGUN</div>
-            <div class="cat-count" id="count-Shotgun"></div>
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M2,11H22V14H2V11M5,15H19V17H5V15Z"/></svg>
           </div>
           <div class="cat-card" onclick="openCategory('Marksman Rifle')">
             <div class="cat-title">MARKSMAN<br>RIFLE</div>
-            <div class="cat-count" id="count-Marksman Rifle"></div>
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M2,11H22V13H2V11M3,14H21V16H3V14Z"/></svg>
           </div>
           <div class="cat-card" onclick="openCategory('Sniper Rifle')">
             <div class="cat-title">SNIPER<br>RIFLE</div>
-            <div class="cat-count" id="count-Sniper Rifle"></div>
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M1,10H23V13H1V10M2,14H22V16H2V14Z"/></svg>
           </div>
           <div class="cat-card" onclick="openCategory('Pistol')">
             <div class="cat-title">PISTOL</div>
-            <div class="cat-count" id="count-Pistol"></div>
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M6,11H18V14H6V11M8,15H16V17H8V15Z"/></svg>
           </div>
           <div class="cat-card" onclick="openCategory('ALL')">
-            <div class="cat-title">ALL GUNS<br>(SEARCH)</div>
-            <div class="cat-count">Browse All</div>
+            <div class="cat-title">EXTRAS<br>& SEARCH</div>
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="white"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,7H13V11H17V13H13V17H11V13H7V11H11V7Z"/></svg>
           </div>
         </div>
       </div>
@@ -362,178 +362,21 @@
 
   <script>
     const GUN_DATABASE = [
-      {
-        name: "BP50",
-        category: "Assault Rifle",
-        rank: "TOP 1 META",
-        isMeta: true,
-        code: "BP50-1A2B4C8D9E",
-        attachments: [
-          { slot: "Muzzle", part: "Maxim Silencer" },
-          { slot: "Barrel", part: "Leroy 438mm Rapid" },
-          { slot: "Stock", part: "Removed Stock" },
-          { slot: "Ammunition", part: "60 Round Drums" },
-          { slot: "Rear Grip", part: "Stippled Grip Tape" }
-        ]
-      },
-      {
-        name: "HVK-30",
-        category: "Assault Rifle",
-        rank: "TOP 2 META",
-        isMeta: true,
-        code: "HVK30-1C2A4D8B9A",
-        attachments: [
-          { slot: "Muzzle", part: "Monolithic Suppressor" },
-          { slot: "Barrel", part: "MIP Light" },
-          { slot: "Stock", part: "YKM Combat Stock" },
-          { slot: "Ammunition", part: "Large Caliber Ammo" },
-          { slot: "Rear Grip", part: "Granulated Grip Tape" }
-        ]
-      },
-      {
-        name: "DR-H",
-        category: "Assault Rifle",
-        rank: "TOP 3",
-        isMeta: true,
-        code: "DRH-1A2B4C8A9A",
-        attachments: [
-          { slot: "Muzzle", part: "Tactical Suppressor" },
-          { slot: "Barrel", part: "OWC Ranger" },
-          { slot: "Stock", part: "No Stock" },
-          { slot: "Ammunition", part: "25 Round OTM Mag" },
-          { slot: "Rear Grip", part: "Granulated Grip Tape" }
-        ]
-      },
-      {
-        name: "STATIC-HV",
-        category: "Sub Machine Gun",
-        rank: "TOP 1 META",
-        isMeta: true,
-        code: "STATICHV-1C2A4B8A9A",
-        attachments: [
-          { slot: "Muzzle", part: "Monolithic Suppressor" },
-          { slot: "Barrel", part: "OSW Light" },
-          { slot: "Stock", part: "YKM Combat Stock" },
-          { slot: "Ammunition", part: "50 Round Mag" },
-          { slot: "Rear Grip", part: "Granulated Grip Tape" }
-        ]
-      },
-      {
-        name: "Switchblade X9",
-        category: "Sub Machine Gun",
-        rank: "TOP 2 META",
-        isMeta: true,
-        code: "SX9-1C2B4A8A9A",
-        attachments: [
-          { slot: "Muzzle", part: "Monolithic Suppressor" },
-          { slot: "Barrel", part: "MIP Extended Light Barrel" },
-          { slot: "Stock", part: "YKM Light Stock" },
-          { slot: "Ammunition", part: "Extended Mag A" },
-          { slot: "Rear Grip", part: "Granulated Grip Tape" }
-        ]
-      },
-      {
-        name: "QQ9",
-        category: "Sub Machine Gun",
-        rank: "TOP 3",
-        isMeta: false,
-        code: "QQ9-2C4C6C8B9A",
-        attachments: [
-          { slot: "Barrel", part: "Monolithic Integral Suppressor" },
-          { slot: "Stock", part: "No Stock" },
-          { slot: "Laser", part: "OWC Laser - Tactical" },
-          { slot: "Ammunition", part: "45 Round Extended Mag" },
-          { slot: "Rear Grip", part: "Granulated Grip Tape" }
-        ]
-      },
-      {
-        name: "MG42",
-        category: "Light Machine Gun",
-        rank: "TOP 1 META",
-        isMeta: true,
-        code: "MG42-1B2C4A8D9A",
-        attachments: [
-          { slot: "Muzzle", part: "Recoil Booster" },
-          { slot: "Barrel", part: "VDD 682mm 31M" },
-          { slot: "Stock", part: "Krausnick S91MG" },
-          { slot: "Ammunition", part: "13mm Anti-Material 125 Round" },
-          { slot: "Rear Grip", part: "Stippled Grip Tape" }
-        ]
-      },
-      {
-        name: "KRM-262",
-        category: "Shotgun",
-        rank: "TOP 1",
-        isMeta: true,
-        code: "KRM-1D2B4C6A9A",
-        attachments: [
-          { slot: "Muzzle", part: "Marauder Suppressor" },
-          { slot: "Barrel", part: "Extended Barrel (+2)" },
-          { slot: "Stock", part: "No Stock" },
-          { slot: "Laser", part: "MIP Laser 5mW" },
-          { slot: "Rear Grip", part: "Granulated Grip Tape" }
-        ]
-      },
-      {
-        name: "SKS",
-        category: "Marksman Rifle",
-        rank: "TOP 1 META",
-        isMeta: true,
-        code: "SKS-1A2A4B7A9A",
-        attachments: [
-          { slot: "Muzzle", part: "Tactical Suppressor" },
-          { slot: "Barrel", part: "MIP Extended Light Barrel" },
-          { slot: "Stock", part: "MIP Stalker Stock" },
-          { slot: "Underbarrel", part: "Tactical Foregrip A" },
-          { slot: "Rear Grip", part: "Granulated Grip Tape" }
-        ]
-      },
-      {
-        name: "LW3-Tundra",
-        category: "Sniper Rifle",
-        rank: "TOP 1 META",
-        isMeta: true,
-        code: "TUNDRA-1A2B4C8A9B",
-        attachments: [
-          { slot: "Muzzle", part: "Tactical Suppressor" },
-          { slot: "Barrel", part: "28.2\" Tiger Team" },
-          { slot: "Stock", part: "Bandit Steady Stock" },
-          { slot: "Ammunition", part: "7 Rnd" },
-          { slot: "Rear Grip", part: "Serpent Wrap" }
-        ]
-      },
-      {
-        name: "Dobvra",
-        category: "Pistol",
-        rank: "TOP 1",
-        isMeta: true,
-        code: "DOBVRA-1A2B5A8B9A",
-        attachments: [
-          { slot: "Muzzle", part: "Oil Can Suppressor" },
-          { slot: "Barrel", part: "Sorokin 140mm Auto" },
-          { slot: "Perk", part: "Akimbo" },
-          { slot: "Ammunition", part: "80 Round Drums" },
-          { slot: "Rear Grip", part: "Vasily's Grip" }
-        ]
-      }
+      { name: "BP50", category: "Assault Rifle", rank: "TOP 1 META", isMeta: true, code: "BP50-1A2B4C8D9E", attachments: [{ slot: "Muzzle", part: "Maxim Silencer" }, { slot: "Barrel", part: "Leroy 438mm Rapid" }, { slot: "Stock", part: "Removed Stock" }, { slot: "Ammunition", part: "60 Round Drums" }, { slot: "Rear Grip", part: "Stippled Grip Tape" }] },
+      { name: "HVK-30", category: "Assault Rifle", rank: "TOP 2 META", isMeta: true, code: "HVK30-1C2A4D8B9A", attachments: [{ slot: "Muzzle", part: "Monolithic Suppressor" }, { slot: "Barrel", part: "MIP Light" }, { slot: "Stock", part: "YKM Combat Stock" }, { slot: "Ammunition", part: "Large Caliber Ammo" }, { slot: "Rear Grip", part: "Granulated Grip Tape" }] },
+      { name: "DR-H", category: "Assault Rifle", rank: "TOP 3", isMeta: true, code: "DRH-1A2B4C8A9A", attachments: [{ slot: "Muzzle", part: "Tactical Suppressor" }, { slot: "Barrel", part: "OWC Ranger" }, { slot: "Stock", part: "No Stock" }, { slot: "Ammunition", part: "25 Round OTM Mag" }, { slot: "Rear Grip", part: "Granulated Grip Tape" }] },
+      { name: "STATIC-HV", category: "Sub Machine Gun", rank: "TOP 1 META", isMeta: true, code: "STATICHV-1C2A4B8A9A", attachments: [{ slot: "Muzzle", part: "Monolithic Suppressor" }, { slot: "Barrel", part: "OSW Light" }, { slot: "Stock", part: "YKM Combat Stock" }, { slot: "Ammunition", part: "50 Round Mag" }, { slot: "Rear Grip", part: "Granulated Grip Tape" }] },
+      { name: "Switchblade X9", category: "Sub Machine Gun", rank: "TOP 2 META", isMeta: true, code: "SX9-1C2B4A8A9A", attachments: [{ slot: "Muzzle", part: "Monolithic Suppressor" }, { slot: "Barrel", part: "MIP Extended Light Barrel" }, { slot: "Stock", part: "YKM Light Stock" }, { slot: "Ammunition", part: "Extended Mag A" }, { slot: "Rear Grip", part: "Granulated Grip Tape" }] },
+      { name: "QQ9", category: "Sub Machine Gun", rank: "TOP 3", isMeta: false, code: "QQ9-2C4C6C8B9A", attachments: [{ slot: "Barrel", part: "Monolithic Integral Suppressor" }, { slot: "Stock", part: "No Stock" }, { slot: "Laser", part: "OWC Laser - Tactical" }, { slot: "Ammunition", part: "45 Round Extended Mag" }, { slot: "Rear Grip", part: "Granulated Grip Tape" }] },
+      { name: "MG42", category: "Light Machine Gun", rank: "TOP 1 META", isMeta: true, code: "MG42-1B2C4A8D9A", attachments: [{ slot: "Muzzle", part: "Recoil Booster" }, { slot: "Barrel", part: "VDD 682mm 31M" }, { slot: "Stock", part: "Krausnick S91MG" }, { slot: "Ammunition", part: "13mm Anti-Material 125 Round" }, { slot: "Rear Grip", part: "Stippled Grip Tape" }] },
+      { name: "KRM-262", category: "Shotgun", rank: "TOP 1", isMeta: true, code: "KRM-1D2B4C6A9A", attachments: [{ slot: "Muzzle", part: "Marauder Suppressor" }, { slot: "Barrel", part: "Extended Barrel (+2)" }, { slot: "Stock", part: "No Stock" }, { slot: "Laser", part: "MIP Laser 5mW" }, { slot: "Rear Grip", part: "Granulated Grip Tape" }] },
+      { name: "SKS", category: "Marksman Rifle", rank: "TOP 1 META", isMeta: true, code: "SKS-1A2A4B7A9A", attachments: [{ slot: "Muzzle", part: "Tactical Suppressor" }, { slot: "Barrel", part: "MIP Extended Light Barrel" }, { slot: "Stock", part: "MIP Stalker Stock" }, { slot: "Underbarrel", part: "Tactical Foregrip A" }, { slot: "Rear Grip", part: "Granulated Grip Tape" }] },
+      { name: "LW3-Tundra", category: "Sniper Rifle", rank: "TOP 1 META", isMeta: true, code: "TUNDRA-1A2B4C8A9B", attachments: [{ slot: "Muzzle", part: "Tactical Suppressor" }, { slot: "Barrel", part: "28.2\" Tiger Team" }, { slot: "Stock", part: "Bandit Steady Stock" }, { slot: "Ammunition", part: "7 Rnd" }, { slot: "Rear Grip", part: "Serpent Wrap" }] },
+      { name: "Dobvra", category: "Pistol", rank: "TOP 1", isMeta: true, code: "DOBVRA-1A2B5A8B9A", attachments: [{ slot: "Muzzle", part: "Oil Can Suppressor" }, { slot: "Barrel", part: "Sorokin 140mm Auto" }, { slot: "Perk", part: "Akimbo" }, { slot: "Ammunition", part: "80 Round Drums" }, { slot: "Rear Grip", part: "Vasily's Grip" }] }
     ];
 
     let activeCategory = "ALL";
     let currentCodeText = "";
-
-    window.onload = () => {
-      const categories = [
-        "Assault Rifle", "Sub Machine Gun", "Light Machine Gun",
-        "Shotgun", "Marksman Rifle", "Sniper Rifle", "Pistol"
-      ];
-      categories.forEach(cat => {
-        const el = document.getElementById("count-" + cat);
-        if (el) {
-          const total = GUN_DATABASE.filter(g => g.category === cat).length;
-          el.innerText = total + (total === 1 ? " Gun" : " Guns");
-        }
-      });
-    };
 
     function openCategory(category) {
       activeCategory = category;
