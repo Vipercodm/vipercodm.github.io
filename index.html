@@ -67,7 +67,6 @@
       max-width: 780px;
     }
 
-    /* Main Mode Selection Grid (Multiplayer & Battle Royale) */
     .mode-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -110,7 +109,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Category Grid inside Multiplayer */
     .category-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -154,7 +152,6 @@
       filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
     }
 
-    /* Dynamic Views */
     .view-section { display: none; }
     .view-header {
       display: flex;
@@ -173,7 +170,7 @@
       text-transform: uppercase;
       text-shadow: 0 0 10px #ff2a2a;
     }
-    .back-btn, .close-view-btn {
+    .back-btn {
       background: rgba(255, 255, 255, 0.12);
       border: 1.5px solid #ff6666;
       color: #fff;
@@ -183,7 +180,7 @@
       border-radius: 10px;
       cursor: pointer;
     }
-    .back-btn:hover, .close-view-btn:hover { background: #ff2a2a; }
+    .back-btn:hover { background: #ff2a2a; }
 
     .search-box {
       width: 100%;
@@ -236,7 +233,6 @@
     .gun-title { font-size: 0.92rem; font-weight: 800; }
     .gun-sub { font-size: 0.72rem; color: #ff9999; margin-top: 4px; }
     
-    /* Toast Notification */
     #toast {
       visibility: hidden;
       min-width: 220px;
@@ -294,7 +290,7 @@
 
   <main>
     <div class="hub-panel">
-      <!-- 1. Home View: Mode Selection (Multiplayer vs Battle Royale) -->
+      <!-- Home View -->
       <div id="homeView">
         <div class="mode-grid">
           <div class="mode-card" onclick="openMultiplayer()">
@@ -308,7 +304,7 @@
         </div>
       </div>
 
-      <!-- 2. Multiplayer Categories View -->
+      <!-- Multiplayer Categories View -->
       <div id="mpCategoriesView" class="view-section">
         <div class="view-header">
           <button class="back-btn" onclick="goHome()">← Back</button>
@@ -346,7 +342,7 @@
         </div>
       </div>
 
-      <!-- 3. Battle Royale Placeholder View (No Attachments) -->
+      <!-- Battle Royale View -->
       <div id="brView" class="view-section" style="text-align: center; padding: 30px 10px;">
         <div class="view-header">
           <button class="back-btn" onclick="goHome()">← Back</button>
@@ -357,7 +353,7 @@
         </p>
       </div>
 
-      <!-- 4. Gun Selection & Search View -->
+      <!-- Gun Selection & Search View -->
       <div id="weaponView" class="view-section">
         <div class="view-header">
           <button class="back-btn" onclick="openMultiplayer()">← Back</button>
@@ -367,7 +363,7 @@
           type="text"
           id="gunSearchInput"
           class="search-box"
-          placeholder="Search gun name (e.g. BP50, HVK-30, QQ9)..."
+          placeholder="Search gun name (e.g. XM4, M13, AK-47)..."
           onkeyup="filterGuns()"
         />
         <div class="guns-grid" id="gunsGrid"></div>
@@ -375,31 +371,33 @@
     </div>
   </main>
 
-  <!-- Notification Toast -->
   <div id="toast">Copied Build Code!</div>
 
   <footer>
     <div>VIPERCODM LOADOUTS</div>
     <div class="footer-center">CALL OF DUTY MOBILE</div>
     <div class="social-links">
-      <a href="https://www.tiktok.com/@peerddddd?is_from_webapp=1&sender_device=pc" target="_blank">TT</a>
       <a href="https://www.instagram.com/peerrdddd?rpxt=MXRycmlob3h0dnA2eg==" target="_blank">IG</a>
+      <a href="https://www.tiktok.com/@peerddddd?is_from_webapp=1&sender_device=pc" target="_blank">Tt</a>
     </div>
   </footer>
 
   <script>
     const GUN_DATABASE = [
-      { name: "BP50", category: "Assault Rifle", rank: "TOP 1 META", isMeta: true, code: "BP50-1A2B4C8D9E" },
-      { name: "HVK-30", category: "Assault Rifle", rank: "TOP 2 META", isMeta: true, code: "HVK30-1C2A4D8B9A" },
-      { name: "DR-H", category: "Assault Rifle", rank: "TOP 3", isMeta: true, code: "DRH-1A2B4C8A9A" },
-      { name: "STATIC-HV", category: "Sub Machine Gun", rank: "TOP 1 META", isMeta: true, code: "STATICHV-1C2A4B8A9A" },
-      { name: "Switchblade X9", category: "Sub Machine Gun", rank: "TOP 2 META", isMeta: true, code: "SX9-1C2B4A8A9A" },
-      { name: "QQ9", category: "Sub Machine Gun", rank: "TOP 3", isMeta: false, code: "QQ9-2C4C6C8B9A" },
-      { name: "MG42", category: "Light Machine Gun", rank: "TOP 1 META", isMeta: true, code: "MG42-1B2C4A8D9A" },
-      { name: "KRM-262", category: "Shotgun", rank: "TOP 1", isMeta: true, code: "KRM-1D2B4C6A9A" },
-      { name: "SKS", category: "Marksman Rifle", rank: "TOP 1 META", isMeta: true, code: "SKS-1A2A4B7A9A" },
-      { name: "LW3-Tundra", category: "Sniper Rifle", rank: "TOP 1 META", isMeta: true, code: "TUNDRA-1A2B4C8A9B" },
-      { name: "Dobvra", category: "Pistol", rank: "TOP 1", isMeta: true, code: "DOBVRA-1A2B5A8B9A" }
+      // ASSAULT RIFLES
+      { name: "XM4", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "XM4-1A2G4F8F9E" },
+      { name: "Lachmann-556", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Lachmann-556-1G2A4E8C9A" },
+      { name: "ISO Hemlock", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "ISO Hemlock-1E2E4E7H8A" },
+      { name: "Grav", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Grav-1A2D7C8A9F" },
+      { name: "M13", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "M13-1B2B4A8A9A" },
+      { name: "BAL-27", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "BAL-27-1C2A4A8A9A" },
+      { name: "LAG-53", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "LAG 53-1A2C4B8A9A" },
+      { name: "KN-44", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "KN-44-2B4D5C8B9C" },
+      { name: "Grau 5.56", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Grau 5.56-2B4C5F8A9A" },
+      { name: "Man-O-War", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "Man-O-War-1C2C3A8C9C" },
+      { name: "CR-56 AMAX", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "CR-56 AMAX-1A2B4A8A9A" },
+      { name: "AS VAL", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "AS VAL-2B3B4D8C9A" },
+      { name: "AK-47", category: "Assault Rifle", rank: "LOADOUT", isMeta: false, code: "AK-47-1A2C4A8A9A" }
     ];
 
     let activeCategory = "Assault Rifle";
